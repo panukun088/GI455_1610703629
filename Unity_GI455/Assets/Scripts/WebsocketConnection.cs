@@ -19,15 +19,17 @@ namespace ProgramChar
         public GameObject inputField;
         public GameObject inputField1;
         public GameObject ChatInPut;
-        public GameObject ChatMessage;
+        public GameObject ChatMessage, ChatMessage2;
         public GameObject Chatwindow, textObject;
         public GameObject NameInput;
+        
 
         public string _IP;
         public string _Port;
         public string _Chat;
         public string _nameText;
-        
+        public string _MessegeCheck;
+        public string _ChatCheck;
         /*public GameObject chatcontainder;
         public GameObject messagePrefab;*/
         void Start()
@@ -89,9 +91,22 @@ namespace ProgramChar
             
             Debug.Log(messageEventArgs.Data);
 
-            ChatMessage.GetComponent<Text>().text += messageEventArgs.Data+"\n";
-            
+            _ChatCheck = " " + _nameText + " : " + _Chat;
+            Debug.Log(_ChatCheck);
+            _MessegeCheck = messageEventArgs.Data;
 
+            if(_MessegeCheck != _ChatCheck)
+            {
+             ChatMessage2.GetComponent<Text>().text += messageEventArgs.Data+"\n";
+                ChatMessage.GetComponent<Text>().text +="\n";
+            }
+            else //if (_Chat == _MessegeCheck)
+            {
+             ChatMessage.GetComponent<Text>().text += messageEventArgs.Data + "\n";
+                ChatMessage2.GetComponent<Text>().text +="\n";
+            }
+
+            
 
         }
 
